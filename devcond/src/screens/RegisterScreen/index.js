@@ -9,7 +9,15 @@ useEffect(()=>{
     navigation.setOptions({
         headerTitle: 'Fazer cadastro'
     });
-}, [])
+}, []);
+
+const handleRegisterButton = async() =>{
+    if(name && email && cpf && password && passwordConfirm){
+
+    }else{
+        alert("Preencha os campos")
+    }
+}
 
 export default () =>{
     const navigation = useNavigation();
@@ -20,6 +28,43 @@ export default () =>{
     const [ email, setEmail] = useState('');
     const [ password,setPassword]  = useState('')
     const [ passwordConfirm, setPasswordConfirm ] = useState('');
+    
+    useEffect(()=>{
+        navigation.setOptions({
+            headerTitle: 'Fazer cadastro'
+        });
+    }, []);
+    
+    const handleRegisterButton = async() =>{
+        if(name && email && cpf && password && passwordConfirm){
+            let result = await api.register(name, email, cpf, password, passwordConfirm);
+            if(result.error === ''){
+                dispatch({
+                    type:'setToken',
+                    payload:{
+                        token:result.token
+                    }
+                });
+
+                dispatch({
+                    type:'setUser',
+                    payload:{
+                        user:result.user
+                    }
+                });
+
+                navigation.reset({
+                    index:1,
+                    routes:[{name:'ChoosePropertyScreen'}]
+                });
+            }else{
+                alert(result.error);
+            }
+        }else{
+            alert("Preencha os campos")
+        }
+    }
+    
     return(
         <C.Container>
 
@@ -56,7 +101,7 @@ export default () =>{
             onChangeText={t=>setPasswordConfirm(t)}
           />
 
-          <C.ButtonArea onPress={null}>
+          <C.ButtonArea onPress={handleRegisterButton}>
               <C.ButtonText>Cadastrar-se</C.ButtonText>
           </C.ButtonArea>
 
