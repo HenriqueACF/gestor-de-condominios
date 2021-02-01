@@ -6,7 +6,12 @@ export default{
         justify-content:center;
         align-items:center;
     `,
+
     LoadingIcon: styled.ActivityIndicator `
     
-    `
+    `,
+
+    Button: styled.Button `
+    
+    `,
 };
