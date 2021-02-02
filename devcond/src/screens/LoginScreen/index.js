@@ -10,7 +10,7 @@ export default () =>{
     const [ context, dispatch] = useStateValue();
 
     const [ cpf, setCpf] = useState('');
-    const [ password,setPassword]  = useState('')
+    const [ password, setPassword]  = useState('');
 
     const handleLoginButton = async () =>{
         if(cpf && password){
