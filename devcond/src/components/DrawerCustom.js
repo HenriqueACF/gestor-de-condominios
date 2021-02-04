@@ -6,6 +6,9 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { useStateValue } from '../contexts/StateContext';
 
+import api from '../services/api';
+
+//STYLE
 const DrawerArea = styled.View `
     flex:1;
     background-color:#FF0000;
@@ -68,16 +71,86 @@ const FooterUnitText = styled.Text `
 
 const FooterUnitButton = styled.TouchableOpacity ``;
 
+const MenuButton = styled.TouchableOpacity `
+    flex-direction: row;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    align-items: center;
+`;
+
+const MenuSquare = styled.View `
+    width:5px;
+    height:35px;
+    margin-right:20px;
+    background-color:transparent;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+`;
+
+const MenuButtonText = styled.Text `
+    font-size:15px;
+    margin-left:10px;
+    color:#666e78;
+`;
+
+//CODIGO
+
 export default (props) =>{
 
     const navigation = useNavigation();
     const [context, dispatch] = useStateValue();
+
+    const menus = [
+        {
+            title:'Mural de Avisos',
+            icon:'inbox',
+            screen:'WallScreen'
+        },
+        {
+            title:'Documentos',
+            icon:'file-text',
+            screen:'DocumentScreen'
+        },
+        {
+            title:'Reservas',
+            icon:'calendar',
+            screen:'ReservationScreen'
+        },
+        {
+            title:'Livro de Ocorrências',
+            icon:'bug',
+            screen:'WarningScreen'
+        },
+        {
+            title:'Achados e Perdidos',
+            icon:'search',
+            screen:'FoundAndLostScreen'
+        },
+        {
+            title:'Boletos',
+            icon:'wpforms',
+            screen:'BilletScreen'
+        },
+        {
+            title:'Perfil',
+            icon:'user',
+            screen:'ProfileScreen'
+        }
+    ]
 
     const handleChangeUnit = async() =>{
         await AsyncStorage.removeItem('property');
         navigation.reset({
             index:1,
             routes:[{name:'ChoosePropertyScreen'}]
+        })
+    }
+
+    const handleLogoutButton = async() =>{
+        await api.logout();
+        navigation.reset({
+            index:1,
+            routes:[{name:'LoginScreen'}]
         })
     }
 
@@ -88,7 +161,18 @@ export default (props) =>{
             </DrawerLogoArea>
 
             <DrawerScroller>
-
+                {menus.map((item, index)=>(
+                    <MenuButton key={index} onPress={()=>navigation.navigate(item.screen)}>
+                        <MenuSquare></MenuSquare>
+                        <Icon name={item.icon} size={20} color={'#666e78'} />
+                        <MenuButtonText>Sair</MenuButtonText>
+                    </MenuButton>
+                ))}
+                    <MenuButton onPress={handleLogoutButton}>
+                        <MenuSquare></MenuSquare>
+                        <Icon name="toggle-left" size={20} color={'#666e78'} />
+                        <MenuButtonText>{item.title}</MenuButtonText>
+                    </MenuButton>
             </DrawerScroller>
 
             <ChangeUnitArea>
