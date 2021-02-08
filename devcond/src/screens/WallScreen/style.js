@@ -18,6 +18,10 @@ export default{
     NoListText: styled.Text `
         font-size:15px;
         color:#000;
-    `
+    `,
+
+    List: styled.FlatList `
+    flex:1;
+    `,
         
 };
