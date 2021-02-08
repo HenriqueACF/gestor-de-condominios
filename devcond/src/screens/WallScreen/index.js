@@ -11,20 +11,44 @@ export default () =>{
     const [ context, dispatch] = useStateValue();
 
     const [loading, setLoading] = useState(true);
+    const [wallList, setWallList] = useState([]);
 
+    useEffect(()=>{
+        navigation.setOptions({
+            headerTitle:'Mural de Avisos'
+        });
+        getWall();
+    }, []);
+
+    const getWall = async() =>{
+        setLoading(true);
+        const result = await api.getWall();
+        setLoading(false);
+        if(result.error === ''){
+            setWallList(result.list);
+        }else{
+            alert(result.error);
+        }
+    }
 
 
     return(
         <C.Container>
-            <C.Scroller>
                 {loading &&
                     <C.LoadingIcon 
                         color="#8863E6" s
                         size="large"
                     />
                 }
+                {!loading && wallList.length === 0
+                    <C.NoListArea>
+                        <C.NoListText>
+                            Não há avisos.
+                        </C.NoListText>
+                    </C.NoListArea>
+                }
                 
-            </C.Scroller>
+
         </C.Container>
     );
 }

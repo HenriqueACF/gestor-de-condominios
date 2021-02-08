@@ -7,11 +7,17 @@ export default{
         background-color:#f5f6fa;
     `,
 
-    Scroller: styled.ScrollView `
-        flex:1;
-        padding: 20px;
+    LoadingIcon: styled.ActivityIndicator ``,
+
+    NoListArea: styled.View `
+        justify-content:center;
+        align-items:center;
+        padding:30px;
     `,
 
-    LoadingIcon: styled.ActivityIndicator ``,
+    NoListText: styled.Text `
+        font-size:15px;
+        color:#000;
+    `
         
 };

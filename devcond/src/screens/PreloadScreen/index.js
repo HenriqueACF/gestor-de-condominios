@@ -50,18 +50,17 @@ export default () =>{
     }, []);
 
     //FUNÇÃO TEMPORARIA(REMOVER)
-    const handleLogoutButton = async () =>{
-        await api.logout();
-        navigation.reset({
-            index:1,
-            routes:[{name: 'LoginScreen'}]
-        });
-    }
+    // const handleLogoutButton = async () =>{
+    //     await api.logout();
+    //     navigation.reset({
+    //         index:1,
+    //         routes:[{name: 'LoginScreen'}]
+    //     });
+    // }
 
     return(
         <C.Container>
             <C.LoadingIcon color="#8863E6" size="large" />
-            <C.button title="Sair" onPress={handleLogoutButton} />
         </C.Container>
     );
 }
