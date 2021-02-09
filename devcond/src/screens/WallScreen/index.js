@@ -23,6 +23,7 @@ export default () =>{
     }, []);
 
     const getWall = async() =>{
+        setWallList([]);
         setLoading(true);
         const result = await api.getWall();
         setLoading(false);
@@ -36,12 +37,6 @@ export default () =>{
 
     return(
         <C.Container>
-                {loading &&
-                    <C.LoadingIcon 
-                        color="#8863E6" s
-                        size="large"
-                    />
-                }
                 {!loading && wallList.length === 0 &&
                     <C.NoListArea>
                         <C.NoListText>
@@ -51,6 +46,8 @@ export default () =>{
                 }
                 <C.List 
                     data={wallList}
+                    onRefresh={getWall}
+                    refreshing={loading}
                     renderItem={({item})=> <WallItem data={item}/>}
                     keyExtractor={(item)=> item.id.toString()}
                 />
