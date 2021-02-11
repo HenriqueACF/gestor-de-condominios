@@ -63,7 +63,7 @@ export default ({data}) => {
     const [likeCount, setLikeCount] = useState(data.likes);
     const [liked, setLiked] = useState(data.liked);
 
-    const handleLike = () =>{
+    const handleLike = async() =>{
         setLiked(!liked);
         const result = await api.likeWallPost(data.id);
         if(result.error === ''){
