@@ -3,7 +3,6 @@ import {
   TheContent,
   TheSidebar,
   TheFooter,
-  TheHeader
 } from './index'
 
 const TheLayout = () => {
