@@ -1,18 +1,12 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import {
   CCreateElement,
   CSidebar,
-  CSidebarBrand,
   CSidebarNav,
-  CSidebarNavDivider,
   CSidebarNavTitle,
-  CSidebarMinimizer,
-  CSidebarNavDropdown,
   CSidebarNavItem,
 } from '@coreui/react'
 
-import CIcon from '@coreui/icons-react'
 
 // sidebar nav config
 import navigation from './_nav'
@@ -26,8 +20,6 @@ const TheSidebar = () => {
         <CCreateElement
           items={navigation}
           components={{
-            CSidebarNavDivider,
-            CSidebarNavDropdown,
             CSidebarNavItem,
             CSidebarNavTitle
           }}
