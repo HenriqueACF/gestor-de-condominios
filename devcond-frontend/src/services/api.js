@@ -35,7 +35,7 @@ export default () =>{
             return json;
         },
         login: async (email, password) =>{
-            let json = await request('post','/auth/login', {email, password});
+            let json = await request('post','auth/login', {email, password});
             return json;
         }
     }

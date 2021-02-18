@@ -12,7 +12,8 @@ import {
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
-  CRow
+  CRow,
+  CAlert
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
@@ -24,16 +25,22 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [ password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleLoginButton =  async () =>{
     if(email && password){
+      setLoading(true);
       const result = await api.login(email, password);
+      setLoading(false);
         if(result.error === ''){
           localStorage.setItem('token', result.token);
           history.push('/');
+        }else{
+          setError(result.error);
         }
     } else{
-      alert('Informe seus dados!');
+      setError('Informe seus dados!');
     }
   }
 
@@ -49,13 +56,23 @@ const Login = () => {
                     <h1>Login</h1>
                     <p className="text-muted">Digite seu Login</p>
 
+                    {error !== '' &&
+                      <CAlert color="danger">{error}</CAlert>
+                    }
+
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="E-mail" value={email} onChange={e=>setEmail(e.target.value)} />
+                      <CInput
+                        disabled={loading} 
+                        type="text" 
+                        placeholder="E-mail" 
+                        value={email} 
+                        onChange={e=>setEmail(e.target.value)} 
+                      />
                     </CInputGroup>
 
                     <CInputGroup className="mb-4">
@@ -64,12 +81,25 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Senha" value={password} onChange={e=>setPassword(e.target.value)} />
+                      <CInput
+                        disabled={loading}  
+                        type="password" 
+                        placeholder="Senha" 
+                        value={password} 
+                        onChange={e=>setPassword(e.target.value)} 
+                      />
                     </CInputGroup>
 
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4" onClick={handleLoginButton}>Entrar</CButton>
+                        <CButton
+                         color="primary"
+                         className="px-4" 
+                         onClick={handleLoginButton} 
+                         disabled={loading} 
+                         >
+                          {loading ? 'Carregando...' : 'Entrar'}
+                        </CButton>
                       </CCol>
                     </CRow>
 
