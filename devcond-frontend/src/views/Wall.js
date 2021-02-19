@@ -26,8 +26,10 @@ export default () =>{
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [modalLoading, setModalLoading] = useState(false);
     const [modalTitleField, setModalTitleField] = useState('');
-    const [modalBodyField, setBodyField] = useState('');
+    const [modalBodyField, setModalBodyField] = useState('');
+    const [modalId, setModalId] = useState('');
 
     const fields = [
         {label: 'Título',key:'title'},
@@ -50,12 +52,58 @@ export default () =>{
         }
     }
 
-    handleCloseModal = () =>{
+    const handleCloseModal = () =>{
         setShowModal(false);
     }
 
-    handleEditButton = (index) =>{
+    const handleEditButton = (index) =>{
+        setModalId(list[index]['id']);
+        setModalTitleField(list[index]['title']);
+        setModalBodyField(list[index]['body']);
         setShowModal(true);
+    }
+
+    const handleRemoveButton = async(index) =>{
+        if(window.confirm('Deseja excluir?')){
+            const result = await api.removeWall(list[index]['id']);
+            if(result.error === ''){
+                getList();
+            }else{
+                alert(result.error)
+            }
+        }
+    }
+
+    const handleNewButton = () =>{
+        setModalId('');
+        setModalTitleField('');
+        setModalBodyField('');
+        setShowModal(true);
+    }
+
+    const handleModaSave = async () =>{
+        if(modalTitleField && setModalBodyField){
+            let result;
+            let data = {
+                title:modalTitleField,
+                body: modalBodyField
+            }
+            if(modalId=== ''){
+                setModalLoading(true);
+                result = await api.addWall(data);
+            }else{
+                result = await api.updateWall(modalId,data)
+            }
+            setModalLoading(false);
+            if(result.error === ''){
+                setShowModal(false);
+                getList();
+            }else{
+                alert(result.error)
+            }
+        }else{
+            alert('Preencha os campos!')
+        }
     }
 
     return(
@@ -66,7 +114,7 @@ export default () =>{
 
                 <CCard>
                     <CCardHeader>
-                        <CButton color="primary">
+                        <CButton color="primary" oonClick={handleNewButton}>
                             <CIcon name='cil-check' />Novo Aviso
                         </CButton>
                     </CCardHeader>
@@ -86,7 +134,7 @@ export default () =>{
                                     <td>
                                         <CButtonGroup>
                                             <CButton color="info" onClick={() =>handleEditButton(index)}>Editar</CButton>
-                                            <CButton color="danger">Remover</CButton>
+                                            <CButton color="danger" onClick={()=>handleRemoveButton(index)}>Remover</CButton>
                                         </CButtonGroup>
                                     </td>
                                 )
@@ -98,16 +146,17 @@ export default () =>{
         </CRow>
 
         <CModal show={showModal} onClose={handleCloseModal}>
-            <CModalHeader closeButton>Editar aviso</CModalHeader>
+            <CModalHeader closeButton>{modalId === '' ?'Novo' : 'Editar'} Aviso</CModalHeader>
             <CModalBody>
                 <CFormGroup>
                     <CLabel htmlFor="modal-title">Título do aviso</CLabel>
-                    <Cinput
+                    <CInput
                         type='text'
                         id="modal-title"
                         placeholder="Digite um título para esse aviso."
                         value={modalTitleField}
                         onChange={e =>setModalTitleField(e.target.value)}
+                        disabled={modalLoading}
                     />
                 </CFormGroup>
 
@@ -118,13 +167,26 @@ export default () =>{
                         placeholder="Digite o conteúdo do aviso."
                         value={modalBodyField}
                         onChange={e =>setModalBodyField(e.target.value)}
+                        disabled={modalLoading}
                     />
                 </CFormGroup>
 
             </CModalBody>
             <CModalFooter>
-                <CButton color="primary">Salvar</CButton>
-                <CButton color="secondary">Remover</CButton>
+                <CButton 
+                    color="primary"
+                    onClick={handleModaSave}
+                    disabled={modalLoading}
+                >
+                    {modalLoading ? 'Carregando...' : 'Salvar'}
+                </CButton>
+                <CButton 
+                    color="secondary"
+                    onClick={handleCloseModal}
+                    disabled={modalLoading}
+                    >
+                        Remover
+                    </CButton>
             </CModalFooter>
         </CModal>
 
