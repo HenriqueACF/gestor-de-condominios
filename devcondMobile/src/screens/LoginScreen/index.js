@@ -11,6 +11,41 @@ export default () =>{
 
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
+    
+    //function buttons
+
+    const handleLoginButton = async () =>{
+        if(cpf && password){
+            let result = await api.login(cpf, password);
+            if(result.error === ''){
+                dispatch({
+                    type:'setToken',
+                    payload:{
+                        token:result.token
+                    }
+                });
+                dispatch({
+                    type:'setUser',
+                    payload:{
+                        user:result.user
+                    }
+                });
+                
+                navigation.reset({
+                    index:1,
+                    routes:[{name:'ChoosePropertyScreen'}]
+                });
+            }else{
+                alert(result.error);
+            }
+        }else{
+            alert("Preencha os dados!")
+        }
+    }
+
+    const handleRegisterButton = () =>{
+        navigation.navigate('RegisterScreen')
+    }
 
     return(
         <C.Container>
@@ -33,11 +68,11 @@ export default () =>{
                 onChangeText={t=>setPassword(t)}
             />
 
-            <C.ButtonArea onPress={null}>
+            <C.ButtonArea onPress={handleLoginButton}>
                 <C.ButtonAreaText>Entrar</C.ButtonAreaText>
             </C.ButtonArea>
 
-            <C.ButtonArea onPress={null}>
+            <C.ButtonArea onPress={handleRegisterButton}>
                 <C.ButtonAreaText>Cadastrar-se</C.ButtonAreaText>
             </C.ButtonArea>
             
