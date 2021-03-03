@@ -7,36 +7,56 @@ export default{
         background-color:#F5F6FA
     `,
     
-    Logo:styled.Image `
-        width:250px;
-        height:200px;
-        margin-left:auto;
-        margin-right:auto;
-        margin-bottom:20px;
+    Scroller: styled.ScrollView `
+        flex:1;
+        padding:20px;
     `,
 
-    Field: styled.TextInput `
-        border-width:1px;
-        border-color:#CCC;
-        background-color:#FFF;
-        border-radius:5px;
+    LoadingIcon: styled.ActivityIndicator `
+
+    `,
+
+    HeadTitle: styled.Text `
+        font-size:16px;
         color:#000;
-        font-size:15px;
-        padding:10px;
-        margin-bottom:15px;
+        text-align:center;
+        margin-top:10px;
     `,
-
-    ButtonArea:styled.TouchableOpacity `
+    
+    BigArea: styled.View `
+        margin:50px 0;
+        align-items:center;
+    `,
+    
+    ExitButtonArea: styled.TouchableOpacity `
         background-color:#8863E6;
-        padding:12px;
+        padding:15px;
         justify-content:center;
         align-items:center;
-        border-radius:5px;
-        margin-bottom:15px;
+    `,
+    
+    ExitButtonText: styled.Text `
+        color:#FFF;
+        font-size:15px;
+        font-weight:bold;
     `,
 
-    ButtonAreaText:styled.Text `
-        color:#FFF;
+    PropertyList: styled.View `
+        margin:20px 0;
+    `,
+
+    ButtonText: styled.TouchableOpacity `
+        background-color: #FFF;
+        border-width: 2px;
+        border-color:#E8E9ED;
+        border-radius: 20px;
+        padding:15px;
+        align-items:center;
+        margin-bottom:10px;
+    `,
+
+    ButtonText: styled.Text `
+        color:#000;
         font-size:15px;
         font-weight:bold;
     `,
