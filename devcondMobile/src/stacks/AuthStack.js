@@ -1,39 +1,50 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-//Telas
+//Importação das Telas
 import PreloadScreen from '../screens/PreloadScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import ChoosePropertyScreen from '../screens/ChoosePropertyScreen';
+
 
 const Stack = createStackNavigator();
 
-export default () =>{
-    return(
+//Stack de cada Tela
+export default () => {
+    return (
         <Stack.Navigator screenOptions={{
-            headerStyle:{
-                backgroundColor:'#F5F6FA',
-                elevation:0,
-                shadowOpacity:0,
+            headerStyle: {
+                backgroundColor: '#F5F6FA',
+                elevation: 0,
+                shadowOpacity: 0
             }
         }}>
-            <Stack.Screen 
+
+            <Stack.Screen
                 name="PreloadScreen"
                 component={PreloadScreen}
-                options={{headerShown:false}}
+                options={{headerShown: false}}
             />
 
-            <Stack.Screen 
+            <Stack.Screen
                 name="LoginScreen"
                 component={LoginScreen}
-                options={{headerShown:false}}
+                options={{headerShown: false}}
             />
 
-            <Stack.Screen 
+            <Stack.Screen
                 name="RegisterScreen"
                 component={RegisterScreen}
-                options={{headerShown:true}}
+                options={{headerShown: true}}
             />
+
+            <Stack.Screen
+                name="ChoosePropertyScreen"
+                component={ChoosePropertyScreen}
+                options={{headerShown: false}}
+            />
+
         </Stack.Navigator>
-    )
-}
+    );
+};
