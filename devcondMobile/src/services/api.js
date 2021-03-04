@@ -63,5 +63,13 @@ export default{
         let json = await request('post', '/auth/register', {
             name, email, cpf, password, password_confirm
         });
+        return json;
+     },
+
+     //pegar avisos
+     getWall: async ()=>{
+         let token = await AsyncStorage.getItem('token');
+         let json = await request('get', '/walls', {}, token);
+         return json;
      }
 };
