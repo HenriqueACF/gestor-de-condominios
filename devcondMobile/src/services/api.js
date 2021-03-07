@@ -39,7 +39,7 @@ export default{
      //Validação de Token
      validateToken: async ()=>{
         let token = await AsyncStorage.getItem('token');
-        let json = await request('post', '/auth/validade', {}, token);
+        let json = await request('post', '/auth/validate', {}, token);
         return json;
      },
 
