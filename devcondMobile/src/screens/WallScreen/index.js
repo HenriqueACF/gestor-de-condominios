@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import C from './style';
 import { useStateValue } from '../../contexts/StateContext';
 import api from '../../services/api';
+import WallItem from '../../components/WallItem';
 
 export default () =>{
 
@@ -35,11 +36,18 @@ export default () =>{
            {loading &&
                 <C.LoadingIcon color="#8863E6" size="large" />
             }
+
             {!loading && wallList.length === 0 &&
                 <C.NoListArea>
                     <C.NoListText>Não há avisos.</C.NoListText>
                 </C.NoListArea>
             }
+
+            <C.List 
+                data={wallList}
+                renderItem={({item})=><WallItem data={item}/>}
+                keyExtractor={(item)=>item.id.toString()}
+            />
          
         </C.Container>
     );
