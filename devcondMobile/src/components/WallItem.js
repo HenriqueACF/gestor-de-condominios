@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import api from '../services/api';
 
 const Box = styled.View `
     background-color:#FFF;
@@ -23,13 +25,13 @@ const InfoArea = styled.View `
 
 const Title = styled.Text `
     font-size:17px;
-    font-wight:bold;
+    font-weight:bold;
     color:#000;
 `;
 
 const Date = styled.Text `
     font-size:14px;
-    font-wight:bold;
+    font-weight:bold;
     color:#9C9DB9;
 `;
 
@@ -58,26 +60,47 @@ const LikeText = styled.Text `
 `;
 
 export default({data})=>{
+
+    const [likeCount, setLikeCount] = useState(data.likes);
+    const [liked, setLiked]=useState(data.liked);
+
+    const handleLike = async()=>{   
+    setLiked(!liked);
+    const result = await api.likeWallPost(data.id);
+    if(result.error === ''){
+        setLikeCount(result.likes);
+        setLiked(result.liked);
+    }else{
+        alert(result.error);
+    }
+    }
+
     return(
         <Box>
 
             <HeaderArea>
-                <Icon name="newspapper-o" size={30} color="#8B63E7" />
+                <Icon name="newspaper-o" size={30} color="#8B63E7" />
                 <InfoArea>
-                    <Title>Titulo</Title>
-                    <Date>Data de criação</Date>
+                    <Title>{data.title}</Title>
+                    <Date>{data.datacreated}</Date>
                 </InfoArea>
             </HeaderArea>
 
             <Body>
-                Texto de aviso
+                {data.body}
             </Body>
 
             <FooterArea>
-                <LikeButton>
-                    <Icon name="heart" size={17} color="#FF0000" />
+                <LikeButton onPress={handleLike}>
+                    
+                    {liked ? 
+                        <Icon name="heart" size={17} color="#FF0000" />
+                     : 
+                        <Icon name="heart-o" size={17} color="#FF0000" />
+                    }
+
                 </LikeButton>
-                <LikeText>99 pessoas curtiram</LikeText>
+                <LikeText>{likeCount} pessoa{likeCount ==1? '': 's'} curti{likeCount ==1?'u':'ram'}</LikeText>
             </FooterArea>
         </Box>
     );

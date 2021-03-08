@@ -15,27 +15,27 @@ export default () =>{
     const [wallList, setWallList] = useState([]);
 
     useEffect(()=>{
-       navigation.setOptions({
-           headerTitle: 'Mural de Avisos'
-       });
-       getWall = async()=>{
-         setLoading(true);
-         const result = await api.getWall();
-         setLoading(false);
-         if(result.error === ''){
-             setWallList(result.list);
-         } else{
-             alert(result.error);
-         }
-       }
-    }, [])
+        navigation.setOptions({
+            headerTitle:'Mural de Avisos'
+        });
+        getWall();
+    }, []);
+
+    const getWall = async ()=>{
+        setWallList([]);
+        setLoading(true);
+        const result = await api.getWall();
+        setLoading(false);
+        if(result.error === ''){
+            setWallList(result.list);
+        }else{
+            alert(result.error);
+        }
+    }
 
     
     return(
         <C.Container>
-           {loading &&
-                <C.LoadingIcon color="#8863E6" size="large" />
-            }
 
             {!loading && wallList.length === 0 &&
                 <C.NoListArea>
@@ -45,6 +45,8 @@ export default () =>{
 
             <C.List 
                 data={wallList}
+                onRefresh={getWall}
+                refreshing={loading}
                 renderItem={({item})=><WallItem data={item}/>}
                 keyExtractor={(item)=>item.id.toString()}
             />
