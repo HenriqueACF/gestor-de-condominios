@@ -72,9 +72,18 @@ export default{
          let json = await request('get', '/walls', {}, token);
          return json;
      },
+
+     //like no muro de avisos
      likeWallPost: async (id)=>{
          let token = await AsyncStorage.getItem('token');
          let json = await request('post', `/wall/${id}/like`, {}, token);
          return json;
+     },
+
+     //pegar documentos
+     getDocs: async () =>{
+        let token = await AsyncStorage.getItem('token');
+        let json = await request('get', '/docs', {}, token);
+        return json;
      }
 };
