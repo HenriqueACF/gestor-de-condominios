@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { launchCamera } from 'react-native-image-picker';
 import C from './style';
 
 import { useStateValue } from '../../contexts/StateContext';
@@ -12,6 +13,8 @@ export default () => {
     const [context, dispatch] = useStateValue();
 
     const [warnText, setWarnText] = useState('');
+    const [photoList, setPhotoList] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(()=>{
@@ -19,6 +22,32 @@ export default () => {
             headerTitle: 'Adicionar uma Ocorrência',
         });
     }, []);
+
+    const handleAddPhoto = async() =>{
+        launchCamera({
+            mediaType:'photo',
+            maxWidth:1280
+        },async (response)=>{
+            if(!response.didCancel){
+                setLoading(true);
+                let result = await api.addWarningFile(response);
+                setLoading(false);
+                if(result.error === ''){
+                    let list = [...photoList];
+                    list.push(result.photo);
+                    setPhotoList(list);
+                }else{
+                    alert(result.error);
+                }
+            }
+        });
+    }
+
+    const handleDelPhoto = (url) =>{
+        let list = [...photoList];
+        list = list.filter(value=>value!==url);
+        setPhotoList(list);
+    }
 
 
     return (
@@ -36,11 +65,25 @@ export default () => {
                
                <C.PhotoArea>
                     <C.PhotoScroll horizontal={true}>
-                        <C.PhotoAddButton onPress={null}>
+                        <C.PhotoAddButton onPress={handleAddPhoto}>
                             <Icon name="camera" size={24} color="#000" />
                         </C.PhotoAddButton>
+
+                        {photoList.map((item, index)=>(
+                            <C.PhotoItem key={index}>
+                                <C.Photo source={{uri:item}} />
+                                <C.PhotoRemoveButton onPress={()=>handleDelPhoto(item)}>
+                                    <Icon name="remove" size={16} color="#FF0000" />
+                                </C.PhotoRemoveButton>
+                            </C.PhotoItem>
+                        ))}
+
                     </C.PhotoScroll>
                </C.PhotoArea>
+
+               {loading &&
+                    <C.LoadingText>Enviando foto. Aguarde.</C.LoadingText>
+               }
 
                <C.ButtonArea onPress={null}>
 

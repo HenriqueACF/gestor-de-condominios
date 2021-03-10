@@ -45,6 +45,27 @@ export default {
         border-radius:5px;
     `,
 
+    PhotoItem: styled.View `
+        width:65px;
+        border-width:1px;
+        border-color:#CCC;
+        border-radius:5px;
+        padding-bottom:5px;
+        margin-left:5px;
+        align-items:center;
+    `,
+
+    Photo: styled.Image `
+        width:63px;
+        height:63px;
+        margin-bottom:5px;
+        border-radius:5px;
+    `,
+
+    PhotoRemoveButton: styled.TouchableOpacity `
+
+    `,
+
     ButtonArea: styled.TouchableOpacity `
         background-color:#8863E6;
         padding:12px;
@@ -58,5 +79,10 @@ export default {
         font-size:15px;
         font-weight:bold;
         color:#FFF;
+    `,
+
+    LoadingText: styled.Text `
+        font-size:15px;
+        margin:10px 0;
     `,
 };
