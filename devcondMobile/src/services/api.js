@@ -98,4 +98,15 @@ export default{
         return json;
      },
 
+     //pegar ocorrências
+     getWarnings: async () =>{
+        let token = await AsyncStorage.getItem('token');
+        let property = await AsyncStorage.getItem('property');
+        property = JSON.parse(property)
+        let json = await request('get', '/warnings', {
+            property: property.id
+        }, token);
+        return json;
+     }
+
 };
