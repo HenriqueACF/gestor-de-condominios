@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import { Linking } from 'react-native';
+import { Modal } from 'react-native';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import api from '../services/api';
 
 const Box = styled.View `
     background-color:#FFF;
@@ -52,8 +51,32 @@ const PhotoImage = styled.Image `
     border-radius:10px;
 `;
 
+const ModalArea = styled.View `
+    flex:1;
+    background-color:#000;
+`;
+
+const ModalImage = styled.Image `
+    flex:1;
+`;
+
+const ModalCloseButton = styled.TouchableOpacity `
+    width:30px;
+    height:30px;
+    position:absolute;
+    top:15px;
+    right:10px;
+`;
+
 export default({data})=>{
 
+    const [showModal, setShowModal] = useState(false);
+    const [modalImage, setModalImage] = useState('');
+
+    const openModal = (img) =>{
+        setModalImage(img);
+        setShowModal(true);
+    }
 
     return(
         <Box >
@@ -70,12 +93,27 @@ export default({data})=>{
             {data.photos.length > 0 && 
                 <PhotosArea>
                     {data.photos.map((item, index)=>(
-                        <PhotoItem key={index} onPress={null}>
+                        <PhotoItem key={index} onPress={()=>openModal(item)}>
                             <PhotoImage source={{uri:item}} resizeMode="cover" />
                         </PhotoItem>
                     ))}
                 </PhotosArea>
             }
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={showModal}
+            >
+                <ModalArea>
+                    <ModalImage source={{uri:modalImage}} resizeMode="contain" />
+                    <ModalCloseButton onPress={()=>setShowModal(false)}>
+                        <Icon name="close" size={24} color="#FFF" />
+                    </ModalCloseButton>
+                </ModalArea>
+
+            </Modal>
+
         </Box>
     );
 }
