@@ -34,7 +34,7 @@ export default () => {
     }
 
     return (
-        <C.Container>
+        <C.Container contentContainerStyle={{paddingBottom:40}}>
 
             <C.Scroller>
 
