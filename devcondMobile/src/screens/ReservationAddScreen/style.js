@@ -49,4 +49,17 @@ export default {
         color:${props=>props.active ? '#FFF' : '#000'};
         font-size:14px;
     `,
+
+    ButtonArea: styled.TouchableOpacity `
+        background-color:#8863E6;
+        padding:15px;
+        justify-content:center;
+        align-items:center;
+    `,
+
+    ButtonText: styled.Text `
+        color:#FFF;
+        font-size:15px;
+        font-weight:bold;
+    `,
 };

@@ -6,7 +6,6 @@ import C from './style';
 import { useStateValue } from '../../contexts/StateContext';
 import api from '../../services/api';
 
-
 export default () => {
     const scroll = useRef();
     const navigation = useNavigation();
@@ -20,7 +19,7 @@ export default () => {
     const [selectedTime, setSelectedTime] = useState(null);
 
     useEffect(()=>{
-        const unsubscribe = navigation.addListener('focus', ()=>{
+        const unsubscribe = navigation.addListener('focus', () => {
             navigation.setOptions({
                 headerTitle: `Reservar ${route.params.data.title}`
             });
@@ -33,31 +32,31 @@ export default () => {
         getTimes();
     }, [selectedDate]);
 
-    //Data Minima
+    //Data minima
     const minDate = new Date();
-    //Data Maxima
+    //Data maxima
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 3);
 
-    const getTimes = async () =>{
-        if(selectedDate){
+    const getTimes = async () => {
+        if(selectedDate) {
             const result = await api.getReservationTimes(
                 route.params.data.id,
                 selectedDate
             );
-            if(result.error === ''){
+            if(result.error === '') {
                 setSelectedTime(null);
                 setTimeList(result.list);
                 setTimeout(()=>{
                     scroll.current.scrollToEnd();
                 }, 500);
-            }else{
+            } else {
                 alert(result.error);
             }
         }
     }
 
-    const getDisabledDates = async () =>{
+    const getDisabledDates = async () => {
         setDisabledDates([]);
         setTimeList([]);
         setSelectedDate(null);
@@ -65,47 +64,63 @@ export default () => {
         setLoading(true);
         const result = await api.getDisabledDates(route.params.data.id);
         setLoading(false);
-        if(result.error === ''){
+        if(result.error === '') {
             let dateList = [];
-            for(let i in result.list){
-                dateList.push(new Date(result.list[i]));
+            for(let i in result.list) {
+                dateList.push( new Date(result.list[i]) );
             }
             setDisabledDates(dateList);
-        }else{
+        } else {
             alert(result.error);
         }
     }
 
-    const handleDateChange = (date) =>{
-        let dateE1 = new Date(date);
-        let year = dateE1.getFullYear();
-        let month = dateE1.getMonth() + 1;
-        let day = dateE1.getDate();
+    const handleDateChange = (date) => {
+        let dateEl = new Date(date);
+        let year = dateEl.getFullYear();
+        let month = dateEl.getMonth() + 1;
+        let day = dateEl.getDate();
 
-        month = month < 10 ? '0' + month : month;
-        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0'+month : month;
+        day = day < 10 ? '0'+day : day;
         setSelectedDate(`${year}-${month}-${day}`);
     }
 
     const showTextDate = (date) => {
-        let dateE1 = new Date(date);
-        let year = dateE1.getFullYear();
-        let month = dateE1.getMonth() + 1;
-        let day = dateE1.getDate();
+        let dateEl = new Date(date);
+        let year = dateEl.getFullYear();
+        let month = dateEl.getMonth() + 1;
+        let day = dateEl.getDate();
 
-        month = month < 10 ? '0' + month : month;
-        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0'+month : month;
+        day = day < 10 ? '0'+day : day;
         return `${day}/${month}/${year}`;
+    }
+
+    const handleSave = async () => {
+        if(selectedDate && selectedTime) {
+            const result = await api.setReservation(
+                route.params.data.id,
+                selectedDate,
+                selectedTime
+            );
+            if(result.error === '') {
+                navigation.navigate('ReservationMyScreen');
+            } else {
+                alert(result.error);
+            }
+        } else {
+            alert("Selecione DATA e HORÁRIO.");
+        }
     }
 
     return (
         <C.Container>
-
-            <C.Scroller ref={scroll} contentContainerStyle={{paddingBottom:40}}>
+            <C.Scroller ref={scroll} contentContainerStyle={{paddingBottom: 40}}>
                 <C.CoverImage source={{uri: route.params.data.cover}} resizeMode="cover" />
 
-                {loading && 
-                    <C.LoadingIcon size='large' color='#8863E6' />
+                {loading &&
+                    <C.LoadingIcon size="large" color="#8863E6" />
                 }
 
                 {!loading &&
@@ -133,8 +148,8 @@ export default () => {
 
                         <C.TimeListArea>
                             {timeList.map((item, index)=>(
-                                <C.TimeItem 
-                                    key={index} 
+                                <C.TimeItem
+                                    key={index}
                                     onPress={()=>setSelectedTime(item.id)}
                                     active={selectedTime === item.id}
                                 >
@@ -146,9 +161,12 @@ export default () => {
                         </C.TimeListArea>
                     </>
                 }
-
             </C.Scroller>
-
+            {!loading &&
+                <C.ButtonArea onPress={handleSave}>
+                    <C.ButtonText>Reservar Local</C.ButtonText>
+                </C.ButtonArea>
+            }
         </C.Container>
     );
 }
