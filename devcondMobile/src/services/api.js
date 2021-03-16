@@ -143,10 +143,24 @@ export default{
         return json;
      },
 
+     //Pega as reservas
      getReservations: async() =>{
          let token = await AsyncStorage.getItem('token');
          let json = await request('get', '/reservations', {}, token);
          return json;
+     },
+
+     getDisabledDates: async (id) =>{
+         let token = await AsyncStorage.getItem('token');
+         let json = await request('get', `/reservation/${id}/disableddates`, {}, token);
+         return json;
+     },
+
+     //Pega datas no calendario
+     getReservationTimes: async (id, date) =>{
+        let token = await AsyncStorage.getItem('token');
+        let json = await request('get', `/reservation/${id}/times`, {date}, token);
+        return json;
      }
 
 };

@@ -6,7 +6,7 @@ export default {
         flex: 1;
         background-color: #F5F6FA;
     `,
-    Scroller:styled.SafeAreaView `
+    Scroller:styled.ScrollView `
         flex:1;
         padding:20px;
     `,
