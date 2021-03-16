@@ -34,9 +34,9 @@ export default () => {
     }
 
     return (
-        <C.Container contentContainerStyle={{paddingBottom:40}}>
+        <C.Container>
 
-            <C.Scroller>
+            <C.Scroller contentContainerStyle={{paddingBottom:40}}>
 
                 <C.ButtonArea>
 
@@ -44,7 +44,7 @@ export default () => {
 
                 </C.ButtonArea>
 
-                <C.Title>Selecione uma Área</C.Title>
+                <C.Title>Selecione uma área:</C.Title>
 
                 {loading &&
                     <C.LoadingIcon size="large" color="#8863E6"/>
