@@ -38,7 +38,7 @@ export default () => {
 
             <C.Scroller contentContainerStyle={{paddingBottom:40}}>
 
-                <C.ButtonArea>
+                <C.ButtonArea onPress={()=>navigation.navigate('ReservationMyScreen')}>
 
                     <C.ButtonText>Minhas Reservas</C.ButtonText>
 

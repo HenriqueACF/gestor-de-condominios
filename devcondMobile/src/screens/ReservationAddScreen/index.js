@@ -138,6 +138,7 @@ export default () => {
                             selectedDayTextColor="#FFFFFF"
                             todayBackgroundColor="transparent"
                             todayTextStyle="#000000"
+                            
                         />
                     </C.CalendarArea>
                 }

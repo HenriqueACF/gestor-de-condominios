@@ -150,11 +150,12 @@ export default{
          return json;
      },
 
-     getDisabledDates: async (id) =>{
-         let token = await AsyncStorage.getItem('token');
-         let json = await request('get', `/reservation/${id}/disableddates`, {}, token);
-         return json;
-     },
+     //dias desabilitados
+     getDisabledDates: async (id) => {
+        let token = await AsyncStorage.getItem('token');
+        let json = await request('get', `/reservation/${id}/disableddates`, {}, token);
+        return json;
+    },
 
      //Pega datas no calendario
      getReservationTimes: async (id, date) =>{
@@ -172,6 +173,17 @@ export default{
             property:property.id,
             date,
             time
+        }, token);
+        return json;
+     },
+
+     //Pegando minhas reservas feitas
+     getMyReservations: async() =>{
+        let token = await AsyncStorage.getItem('token');
+        let property = await AsyncStorage.getItem('property');
+        property = JSON.parse(property);
+        let json = await request('get', '/myreservations', {
+            property: property.id
         }, token);
         return json;
      }
