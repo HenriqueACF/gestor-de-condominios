@@ -186,6 +186,13 @@ export default{
             property: property.id
         }, token);
         return json;
+     },
+
+     //Removendo a reserva
+     removeReservation: async(id) =>{
+         let token = await AsyncStorage.getItem('token');
+         let json = await request('delete', `/myreservations/${id}`, {}, token);
+         return json;
      }
 
 };
