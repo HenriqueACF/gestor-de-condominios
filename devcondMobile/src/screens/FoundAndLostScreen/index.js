@@ -5,6 +5,8 @@ import C from './style';
 import { useStateValue } from '../../contexts/StateContext';
 import api from '../../services/api';
 
+import LostItem from '../../components/LostItem';
+
 
 export default () => {
     const navigation = useNavigation();
@@ -28,8 +30,8 @@ export default () => {
         const result = await api.getFoundAndLost();
         setLoading(false);
         if(result.error === '') {
-            setLostList(result.lost);
-            setRecoveredList(result.recovered);
+            setLostList( result.lost );
+            setRecoveredList( result.recovered );
         } else {
             alert(result.error);
         }
@@ -48,7 +50,7 @@ export default () => {
                     </C.NoListArea>
                 }
                 
-                //lista de itens perdidos
+                
                 {!loading && lostList.length > 0 &&
                     <>
                         <C.Title>Itens Perdidos</C.Title>
@@ -56,11 +58,18 @@ export default () => {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
-
+                            {lostList.map((item, index)=>(
+                                <LostItem
+                                    key={index}
+                                    data={item}
+                                    showButton={true}
+                                    refreshFunction={getFoundAndLost}
+                                />
+                            ))}
                         </C.ProductScroller>
                     </>
                 }
-                //lista de itens recuperados
+                
                 {!loading && recoveredList.length > 0 &&
                     <>
                         <C.Title>Itens Recuperados</C.Title>
@@ -68,7 +77,13 @@ export default () => {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                         >
-
+                            {recoveredList.map((item, index)=>(
+                                <LostItem
+                                    key={index}
+                                    data={item}
+                                    showButton={false}
+                                />
+                            ))}
                         </C.ProductScroller>
                     </>
                 } 

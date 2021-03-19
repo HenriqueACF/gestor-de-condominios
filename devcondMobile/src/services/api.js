@@ -200,6 +200,15 @@ export default{
         let token = await AsyncStorage.getItem('token');
         let json = await request('get', `/foundandlost`, {}, token);
         return json;
+     },
+
+     //Definindo que aqele pertence é meu
+     setRecovered: async (id) =>{
+        let token = await AsyncStorage.getItem('token');
+        let json = await request('put', `/foundandlost/${id}`, {
+            status:'recovered'
+        }, token);
+        return json;
      }
 
 };

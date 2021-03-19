@@ -6,33 +6,32 @@ export default {
         background-color: #F5F6FA;
     `,
 
-    Scroller: styled.ScrollView `
-        flex:1;
+    Scroller: styled.ScrollView`
+        flex: 1;
     `,
 
     LoadingIcon: styled.ActivityIndicator``,
-    
+
     NoListArea: styled.View`
         justify-content: center;
         align-items: center;
         padding: 30px;
     `,
-    
+
     NoListText: styled.Text`
         font-size: 15px;
         color: #000;
     `,
-    
-    Title: styled.Text `
-        font-size:17px;
-        color:#000;
-        margin:10px 20px;
 
+    Title: styled.Text`
+        font-size: 17px;
+        color: #000;
+        margin: 10px 20px;
     `,
-
-    ProductScroller: styled.ScrollView `
-        width:100%;
-        padding-left:20px;
-        margin-bottom:20px;
+    
+    ProductScroller: styled.ScrollView`
+        width: 100%;
+        padding-left: 20px;
+        margin-bottom: 20px;
     `,
 };
