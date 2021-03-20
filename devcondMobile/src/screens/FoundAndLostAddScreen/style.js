@@ -43,4 +43,10 @@ export default {
         font-weight:bold;
         font-size:15px;
     `,
+
+    PhotoItem: styled.Image `
+        height:200px;
+        border-radius:5px;
+        margin-bottom:10px;
+    `,
 };
