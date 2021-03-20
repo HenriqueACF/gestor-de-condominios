@@ -20,6 +20,8 @@ export default () => {
         navigation.setOptions({
             headerTitle: 'Adicionar um item perdido'
         });
+        //Função para abrir direto na camera
+        //handleAddPhoto();
     }, []);
 
     const handleAddPhoto = () =>{
@@ -33,6 +35,24 @@ export default () => {
         });
     }
 
+    const handleSave = async () => {
+        if(description !== '' && where != '' && photo.uri !== '') {
+            const result = await api.addLostItem(
+                photo, description, where
+            );
+            if(result.error === '') {
+                setPhoto({});
+                setDescription('');
+                setWhere('');
+                navigation.navigate('FoundAndLostScreen');
+            } else {
+                alert(result.error);
+            }
+        } else {
+            alert('Preencha os campos');
+        }
+    }
+    
     return (
         <C.Container>
             <C.Scroller>
@@ -67,7 +87,7 @@ export default () => {
                     onChangeText={t=>setWhere(t)}
                 />
 
-                <C.ButtonArea onPress={null}>
+                <C.ButtonArea onPress={handleSave}>
                     <C.ButtonText>Salvar</C.ButtonText>
                 </C.ButtonArea>
             </C.Scroller>

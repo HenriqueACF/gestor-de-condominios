@@ -29,6 +29,13 @@ export default () => {
         getFoundAndLost();
     }, []);
 
+    useEffect(()=>{
+        const unsubscribe = navigation.addListener('focus', () => {
+            getFoundAndLost();
+        });
+        return unsubscribe;
+    }, [navigation]);
+
     const handleAddItem = () =>{
         navigation.navigate('FoundAndLostAddScreen');
     }
