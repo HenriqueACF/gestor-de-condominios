@@ -6,6 +6,8 @@ import { useStateValue } from '../../contexts/StateContext';
 import api from '../../services/api';
 
 import UnitPeopleSection from '../../components/UnitPeopleSection';
+import UnitVehicleSection from '../../components/UnitVehicleSection';
+import UnitPetSection from '../../components/UnitPetSection';
 
 
 export default () => {
@@ -56,6 +58,7 @@ export default () => {
                         <C.ListArea>
                             <UnitPeopleSection 
                                 list={peopleList}
+                                refreshFunction={getUnitInfo}
                             />
                         </C.ListArea>
 
@@ -67,7 +70,10 @@ export default () => {
                         </C.TitleArea>
 
                         <C.ListArea>
-                            
+                            <UnitVehicleSection 
+                                list={vehicleList}
+                                refreshFunction={getUnitInfo}
+                            />
                         </C.ListArea>
 
                         <C.TitleArea>
@@ -78,7 +84,10 @@ export default () => {
                         </C.TitleArea>
 
                         <C.ListArea>
-                            
+                            <UnitPetSection 
+                                list={petList}
+                                refreshFunction={getUnitInfo}
+                            />
                         </C.ListArea>
                     </>
                 }

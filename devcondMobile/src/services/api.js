@@ -243,4 +243,15 @@ export default{
         return json;
      },
 
+     //Remove qualquer item da unidade(Morador, Veículos e Pets)
+     removeUnitItem: async(type, id) =>{
+         let token = await AsyncStorage.getItem('token');
+         let property = await AsyncStorage.getItem('property');
+         property = JSON.parse(property);
+         let json = await request('post', `/unit/${property.id}/remove${type}`, {
+             id
+         }, token);
+         return json;
+     },
+
 };

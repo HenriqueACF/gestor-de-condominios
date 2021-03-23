@@ -42,7 +42,7 @@ export default({list, refreshFunction}) =>{
     const handleRemove = (index) =>{
         Alert.alert(
             'Confirmação',
-            'Tem certeza que deseja excluir este morador?',
+            'Tem certeza que deseja excluir este Animal de estimação?',
             [
                 {text: 'Sim', onPress:()=>removeItem(index)},
                 {text: 'Cancelar', onPress:null, styled:'cancel'}
@@ -52,7 +52,7 @@ export default({list, refreshFunction}) =>{
 
     const removeItem = async(index) =>{
         let result = await api.removeUnitItem(
-            'person',
+            'pet',
             list[index].id
         );
         if(result.error === ''){
@@ -68,7 +68,7 @@ export default({list, refreshFunction}) =>{
                 <Item key={index}>
                     <InfoArea>
                         <StrongText>{item.name}</StrongText>
-                        <RegularText>Data de nascimento: {item.birthdate}</RegularText>
+                        <RegularText>Raça: {item.race}</RegularText>
                     </InfoArea>
                     <RemoveButton onPress={()=>handleRemove(index)}>
                         <Icon name='remove' color='#FF0000' size={24} />
