@@ -234,4 +234,13 @@ export default{
         return json;
      },
 
+     //Pegando informações da unidade
+     getUnitInfo: async () =>{
+        let token = await AsyncStorage.getItem('token');
+        let property = await AsyncStorage.getItem('property');
+        property = JSON.parse(property);
+        let json = await request('get', `/unit/${property.id}`, {}, token);
+        return json;
+     },
+
 };
