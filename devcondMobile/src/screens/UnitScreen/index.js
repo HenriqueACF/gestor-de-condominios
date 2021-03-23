@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import C from './style';
-
 import { useStateValue } from '../../contexts/StateContext';
 import api from '../../services/api';
+
+import UnitPeopleSection from '../../components/UnitPeopleSection';
 
 
 export default () => {
@@ -44,6 +46,40 @@ export default () => {
 
                 {!loading &&
                     <>
+                        <C.TitleArea>
+                            <C.Title>Moradores</C.Title>
+                            <C.TitleAddButton onPress={null}>
+                                <Icon name='plus' size={24} color='#000'/>
+                            </C.TitleAddButton>
+                        </C.TitleArea>
+
+                        <C.ListArea>
+                            <UnitPeopleSection 
+                                list={peopleList}
+                            />
+                        </C.ListArea>
+
+                        <C.TitleArea>
+                            <C.Title>Veículos</C.Title>
+                            <C.TitleAddButton onPress={null}>
+                                <Icon name='plus' size={24} color='#000'/>
+                            </C.TitleAddButton>
+                        </C.TitleArea>
+
+                        <C.ListArea>
+                            
+                        </C.ListArea>
+
+                        <C.TitleArea>
+                            <C.Title>Pets</C.Title>
+                            <C.TitleAddButton onPress={null}>
+                                <Icon name='plus' size={24} color='#000'/>
+                            </C.TitleAddButton>
+                        </C.TitleArea>
+
+                        <C.ListArea>
+                            
+                        </C.ListArea>
                     </>
                 }
             </C.Scroller>           
