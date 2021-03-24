@@ -33,6 +33,17 @@ export default {
         margin-bottom:20px;
     `,
 
+    ModalArea: styled.Modal ``,
+
+    ModalBg: styled.View `
+        flex:1;
+        background-color:rgba(0,0,0,0.5);
+    `,
+
+    ModalBody: styled.ScrollView `
+        background-color:#FFF;
+        margin:20px;
+    `,
 
 
 };
