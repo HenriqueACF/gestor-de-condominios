@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import DatePicker from 'react-native-date-picker';
+import api from '../services/api';
 
 const Box = styled.View `
     padding:20px;
@@ -49,8 +50,30 @@ export default ({refreshFunction, setShowModal}) =>{
     const [date, setDate] = useState(new Date());
 
 
-    const handleAdd = async() =>{
+    const handleAdd = async () => {
+        if(name && date) {
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
 
+            month = month < 10 ? '0'+month : month;
+            day = day < 10 ? '0'+day : day;
+
+            let birthdate = `${year}-${month}-${day}`;
+
+            const result = await api.addUnitItem(
+                'person',
+                { name, birthdate }
+            );
+            if(result.error === '') {
+                refreshFunction();
+                setShowModal(false);
+            } else {
+                alert(result.error);
+            }
+        } else {
+            alert('Preencha os campos');
+        }
     }
 
     const handleCancel = () =>{
