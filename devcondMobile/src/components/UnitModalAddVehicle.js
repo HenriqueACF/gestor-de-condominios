@@ -85,7 +85,7 @@ export default ({refreshFunction, setShowModal}) =>{
 
             <Label>Cor do veículo:</Label>
             <Field
-                placeholder="Digite o modelo do seu veículo."
+                placeholder="Digite a cor do seu veículo."
                 value={color}
                 onChangeText={t=>setColor(t)}
             />
