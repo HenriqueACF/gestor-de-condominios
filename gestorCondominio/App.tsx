@@ -1,10 +1,10 @@
-import React from 'react'
-import { Text, View } from "react-native";
+import React from 'react';
+import {SafeAreaView, Text, View} from 'react-native';
 
-export default () =>{
-  return(
-    <View>
+export default () => {
+  return (
+    <SafeAreaView>
       <Text>Oi</Text>
-    </View>
-  )
-}
+    </SafeAreaView>
+  );
+};
