@@ -1,10 +1,13 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
+import {StateProvider} from './src/contexts/StateContext';
 
 export default () => {
   return (
-    <SafeAreaView>
-      <Text>Oi</Text>
-    </SafeAreaView>
+    <StateProvider>
+      <SafeAreaView>
+        <Text>Oi</Text>
+      </SafeAreaView>
+    </StateProvider>
   );
 };
