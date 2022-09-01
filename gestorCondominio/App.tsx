@@ -1,14 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import {StateProvider} from "./src/Contexts/StateContext";
+import AuthStack from "./src/Stacks/AuthStack";
+import {NavigationContainer} from "@react-navigation/native";
 
 export default function App() {
   return (
       <StateProvider>
-        <View style={styles.container}>
-          <Text>oi</Text>
-          <StatusBar style="auto" />
-        </View>
+        <NavigationContainer>
+            <AuthStack/>
+        </NavigationContainer>
       </StateProvider>
   );
 }
