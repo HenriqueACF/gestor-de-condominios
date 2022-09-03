@@ -1,0 +1,46 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const baseUrl = 'https://api.b7web.com.br/devcond/api'
+const request = async (method, endpoint, params, token = null)=> {
+  method = method.toLowerCase()
+  let fullUrl = `${baseUrl}${endpoint}`
+  let body = null
+
+  switch(method){
+    case 'GET':
+      let querystring = new URLSearchParams(params).toString()
+      fullUrl += `?${querystring}`
+      //auth/validade
+      break
+      case 'POST':
+      case 'PUT':
+      case 'Delete':
+        body = JSON.stringify(params)
+      break
+  }
+
+  var headers = { 'Content-Type': 'application/json' }
+  if(token){
+    headers.Authorization = `Bearer ${token}`
+  }
+
+  let req = await fetch(fullUrl, {
+    method,
+    headers,
+    body
+  })
+  let json = await req.json()
+  return json
+
+}
+
+export default {
+  getToken: async () => {
+    return await AsyncStorage.getItem('token')
+  },
+  validateToken: async () =>{
+    let token = await AsyncStorage.getItem('token')
+    let json = await request('post', '/auth/validate', {}, token)
+    return json
+  }
+}
