@@ -1,4 +1,4 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import createNativeStackNavigator from '@react-navigation/native-stack'
 import LoginScreen from '../Screens/LoginScreen'
 import PreloadScreen from '../Screens/PreloadScreen/Index'
 const Stack = createNativeStackNavigator()
