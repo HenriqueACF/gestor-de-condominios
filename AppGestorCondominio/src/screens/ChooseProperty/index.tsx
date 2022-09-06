@@ -1,10 +1,16 @@
 import React from 'react';
-import {KeyboardAvoidingView, Text} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, Text, View} from 'react-native';
+import styles from './style';
 
 export function ChooseProperty({navigation}) {
   return (
-    <KeyboardAvoidingView>
-      <Text>Selecione uma Propriedade</Text>
+    <KeyboardAvoidingView style={styles.container}>
+      <Text style={styles.txt}>Selecione uma Propriedade</Text>
+      <ScrollView>
+        <View>
+          <Text>Propriedade 1</Text>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
