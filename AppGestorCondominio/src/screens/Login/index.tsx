@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Image, KeyboardAvoidingView, TextInput, TouchableOpacity, Text, View } from "react-native";
 import styles from './styles'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHome, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export function Login({navigation}) {
 const [cpf, setCpf] = useState('')
@@ -19,8 +18,7 @@ const [password, setPassword] = useState('')
         value={cpf}
         onChangeText={t=>setCpf(t)}
         />
-        <FontAwesomeIcon icon={faUser} size={35} color={'#bf40bf'} style={{marginLeft:5}}/>
-  
+        <Icon name="user" size={25} color="#bf40bf" style={{marginLeft:5}}/>
       </View>
       <View style={{flexDirection:'row', justifyContent:'space-around'}}>
       <TextInput
@@ -30,7 +28,7 @@ const [password, setPassword] = useState('')
         value={password}
         onChangeText={t=>setPassword(t)}
       />
-      <FontAwesomeIcon icon={ faLock } size={35} color={'#bf40bf'} style={{marginLeft:5}}/>
+      <Icon name="lock" size={25} color="#bf40bf" style={{marginLeft:5}} />
       </View>
       <TouchableOpacity 
         style={styles.btn}
