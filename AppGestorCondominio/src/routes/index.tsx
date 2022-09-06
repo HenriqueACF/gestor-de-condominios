@@ -1,18 +1,45 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {Login} from '../screens/Login/index'
+import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Login} from '../screens/Login';
+import {Register} from '../screens/Register';
+import {ChooseProperty} from '../screens/ChooseProperty';
+import {RegisterFinished} from '../screens/Register/Finished';
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
-export default function Routes(){
-  return(
+export default function Routes() {
+  return (
     <Stack.Navigator>
       <Stack.Screen
-        name='Login'
+        name="Login"
         component={Login}
         options={{
-          headerShown: false
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="RegisterFinished"
+        component={RegisterFinished}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="ChooseProperty"
+        component={ChooseProperty}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
-  )
+  );
 }
