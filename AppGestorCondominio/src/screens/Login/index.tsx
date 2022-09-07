@@ -23,8 +23,11 @@ export function Login({navigation}) {
       />
       <View
         style={{
+          display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-around',
+          alignItems: 'center',
+          paddingBottom: 15,
         }}>
         <TextInput
           placeholder="Digite seu CPF"
@@ -34,7 +37,13 @@ export function Login({navigation}) {
         />
         <Icon name="user" size={30} color="#bf40bf" style={{marginLeft: 5}} />
       </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+        }}>
         <TextInput
           placeholder="Digite sua Senha"
           style={styles.input}

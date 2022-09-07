@@ -11,7 +11,6 @@ export default styles = StyleSheet.create({
     backgroundColor: '#ccc',
     fontSize: 15,
     width: '80%',
-    marginBottom: 10,
     borderRadius: 5,
   },
   btn: {
