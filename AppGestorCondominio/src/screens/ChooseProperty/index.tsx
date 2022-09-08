@@ -21,10 +21,10 @@ export function ChooseProperty({navigation}) {
           paddingTop: 20,
           paddingBottom: 40,
         }}>
-        <Text style={styles.txt}>Selecione uma Propriedade</Text>
+        <Text style={styles.txt}>Olá, Henrique, selecione uma propriedade</Text>
         <Icon name="home" size={35} color="#bf40bf" style={{marginLeft: 5}} />
       </View>
-      <ScrollView>
+      <ScrollView style={{marginBottom: 100}}>
         <View>
           <TouchableOpacity style={styles.btn}>
             <Text style={styles.txtBtn}>Apt 1</Text>

@@ -5,7 +5,8 @@ export default styles = StyleSheet.create({
   container: {},
   txt: {
     color: '#bf40bf',
-    fontSize: 22,
+    fontSize: 17,
+    fontWeight: 'bold',
   },
   btn: {
     alignSelf: 'center',
