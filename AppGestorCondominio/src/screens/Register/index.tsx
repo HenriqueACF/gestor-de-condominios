@@ -8,11 +8,11 @@ import {
 import styles from '../Register/style';
 export function Register({navigation}) {
   const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [senhaConfirma, setSenhaConfirma] = useState('');
   const [tel, setTel] = useState('');
   const [cpf, setCpf] = useState('');
-  const [cep, setCep] = useState('');
-  const [endereco, setEndereco] = useState('');
-  const [numero, setNumero] = useState('');
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Text style={styles.txt}>
@@ -26,38 +26,42 @@ export function Register({navigation}) {
       />
       <TextInput
         style={styles.input}
-        placeholder="Telefone"
-        value={tel}
-        onChangeText={t => setTel(t)}
-      />
-      <TextInput
-        style={styles.input}
         placeholder="CPF"
+        keyboardType="numeric"
         value={cpf}
         onChangeText={t => setCpf(t)}
       />
       <TextInput
         style={styles.input}
-        placeholder="CEP"
-        value={cep}
-        onChangeText={t => setCep(t)}
+        placeholder="Email"
+        value={email}
+        onChangeText={t => setEmail(t)}
       />
       <TextInput
         style={styles.input}
-        placeholder="Endereço Completo"
-        value={endereco}
-        onChangeText={t => setEndereco(t)}
+        placeholder="Senha"
+        secureTextEntry={true}
+        value={senha}
+        onChangeText={t => setSenha(t)}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Confirme sua senha"
+        secureTextEntry={true}
+        value={senhaConfirma}
+        onChangeText={t => setSenhaConfirma(t)}
       />
       <TextInput
         style={styles.input}
-        placeholder="Nº"
-        value={numero}
-        onChangeText={t => setNumero(t)}
+        placeholder="Telefone"
+        value={tel}
+        onChangeText={t => setTel(t)}
       />
       <TouchableOpacity
         style={styles.btn}
         onPress={() => navigation.navigate('RegisterFinished')}>
-        <Text style={styles.txtBtn}>Finalizar</Text>
+        <Text style={styles.txtBtn}>Cadastrar-se</Text>
       </TouchableOpacity>
     </KeyboardAvoidingView>
   );

@@ -20,7 +20,7 @@ export default styles = StyleSheet.create({
   btn: {
     padding: 12,
     backgroundColor: '#bf40bf',
-    width: 110,
+    width: 140,
     borderRadius: 5,
     marginTop: 40,
     alignSelf: 'center',
