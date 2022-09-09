@@ -4,6 +4,7 @@ import {Login} from '../screens/Login';
 import {Register} from '../screens/Register';
 import {ChooseProperty} from '../screens/ChooseProperty';
 import {RegisterFinished} from '../screens/Register/Finished';
+import MainDrawer from '../stack/MainDrawer';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,14 @@ export default function Routes() {
       <Stack.Screen
         name="ChooseProperty"
         component={ChooseProperty}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="MainDrawer"
+        component={MainDrawer}
         options={{
           headerShown: false,
         }}
