@@ -4,15 +4,15 @@ import {StyleSheet} from 'react-native';
 export default styles = StyleSheet.create({
   container: {},
   txt: {
-    color: '#bf40bf',
+    color: '#8B63E7',
     fontSize: 17,
     fontWeight: 'bold',
   },
   btn: {
     alignSelf: 'center',
-    backgroundColor: '#bf40bf',
+    backgroundColor: '#8B63E7',
     borderWidth: 2,
-    borderColor: '#bf40bf',
+    borderColor: '#8B63E7',
     borderRadius: 20,
     padding: 15,
     alignItems: 'center',

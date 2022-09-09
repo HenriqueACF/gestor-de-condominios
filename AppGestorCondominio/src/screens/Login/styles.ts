@@ -8,6 +8,7 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
+    color: 'red',
     backgroundColor: '#ccc',
     fontSize: 15,
     width: '80%',
@@ -15,7 +16,7 @@ export default styles = StyleSheet.create({
   },
   btn: {
     padding: 12,
-    backgroundColor: '#bf40bf',
+    backgroundColor: '#8B63E7',
     width: 70,
     borderRadius: 5,
     marginTop: 40,
@@ -29,7 +30,7 @@ export default styles = StyleSheet.create({
     paddingTop: 30,
   },
   txtBtnRegister: {
-    color: '#bf40bf',
+    color: '#8B63E7',
     fontWeight: 'bold',
     fontSize: 15,
   },

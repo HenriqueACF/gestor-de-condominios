@@ -12,7 +12,7 @@ export function RegisterFinished({navigation}) {
       <Text style={styles.subTxt}>
         Vá para a tela de login e realize seu primeiro acesso
       </Text>
-      <Icon name="check" size={100} color="#bf40bf" style={styles.icon} />
+      <Icon name="check" size={100} color="#8B63E7" style={styles.icon} />
       <TouchableOpacity
         style={styles.btn}
         onPress={() => navigation.navigate('Login')}>

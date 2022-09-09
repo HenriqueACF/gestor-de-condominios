@@ -22,11 +22,13 @@ export function ChooseProperty({navigation}) {
           paddingBottom: 40,
         }}>
         <Text style={styles.txt}>Olá, Henrique, selecione uma propriedade</Text>
-        <Icon name="home" size={35} color="#bf40bf" style={{marginLeft: 5}} />
+        <Icon name="home" size={35} color="#8B63E7" style={{marginLeft: 5}} />
       </View>
       <ScrollView style={{marginBottom: 100}}>
         <View>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.navigate('MainDrawer')}>
             <Text style={styles.txtBtn}>Apt 1</Text>
           </TouchableOpacity>
         </View>

@@ -8,13 +8,13 @@ export default styles = StyleSheet.create({
     paddingBottom: 50,
     textAlign: 'center',
     fontSize: 22,
-    color: '#bf40bf',
+    color: '#8B63E7',
   },
   subTxt: {
     paddingTop: 30,
     textAlign: 'center',
     fontSize: 18,
-    color: '#bf40bf',
+    color: '#8B63E7',
   },
   icon: {
     paddingTop: 100,
@@ -22,7 +22,7 @@ export default styles = StyleSheet.create({
   },
   btn: {
     padding: 12,
-    backgroundColor: '#bf40bf',
+    backgroundColor: '#8B63E7',
     width: 140,
     borderRadius: 5,
     marginTop: 200,

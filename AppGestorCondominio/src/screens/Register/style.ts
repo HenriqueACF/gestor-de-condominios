@@ -6,7 +6,7 @@ export default styles = StyleSheet.create({
     flex: 1,
   },
   txt: {
-    color: '#bf40bf',
+    color: '#8B63E7',
     textAlign: 'center',
     marginTop: 30,
     fontSize: 22,
@@ -19,7 +19,7 @@ export default styles = StyleSheet.create({
   },
   btn: {
     padding: 12,
-    backgroundColor: '#bf40bf',
+    backgroundColor: '#8B63E7',
     width: 140,
     borderRadius: 5,
     marginTop: 40,

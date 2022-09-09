@@ -35,7 +35,7 @@ export function Login({navigation}) {
           value={cpf}
           onChangeText={t => setCpf(t)}
         />
-        <Icon name="user" size={30} color="#bf40bf" style={{marginLeft: 5}} />
+        <Icon name="user" size={30} color="#8B63E7" style={{marginLeft: 5}} />
       </View>
       <View
         style={{
@@ -51,7 +51,7 @@ export function Login({navigation}) {
           value={password}
           onChangeText={t => setPassword(t)}
         />
-        <Icon name="lock" size={30} color="#bf40bf" style={{marginLeft: 5}} />
+        <Icon name="lock" size={30} color="#8B63E7" style={{marginLeft: 5}} />
       </View>
       <TouchableOpacity
         style={styles.btn}
