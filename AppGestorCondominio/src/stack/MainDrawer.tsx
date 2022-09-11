@@ -2,6 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {WallScreen} from '../screens/WallScreen';
 import DrawerCustom from '../components/Drawer/DrawerCustom';
+import {DocumentScreen} from '../screens/Documents';
 const Drawer = createDrawerNavigator();
 
 export default function MainDrawer() {
@@ -18,6 +19,7 @@ export default function MainDrawer() {
         },
       }}>
       <Drawer.Screen name="WallScreen" component={WallScreen} />
+      <Drawer.Screen name="DocumentScreen" component={DocumentScreen} />
     </Drawer.Navigator>
   );
 }
