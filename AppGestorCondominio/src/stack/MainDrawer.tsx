@@ -6,14 +6,18 @@ const Drawer = createDrawerNavigator();
 
 export default function MainDrawer() {
   return (
-    <Drawer.Navigator drawerContent={props => <DrawerCustom {...props} />}>
-      <Drawer.Screen
-        name="WallScreen"
-        component={WallScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
+    <Drawer.Navigator
+      drawerContent={props => <DrawerCustom {...props} />}
+      screenOptions={{
+        headerShown: true,
+        headerTitle: '',
+        headerStyle: {
+          backgroundColor: '#f5f6fa',
+          shadowOpacity: 0,
+          elevation: 0,
+        },
+      }}>
+      <Drawer.Screen name="WallScreen" component={WallScreen} />
     </Drawer.Navigator>
   );
 }
