@@ -16,7 +16,7 @@ export function WarningScreen({navigation}) {
       headerTitle: 'Livro de Ocorrências',
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate('WarningAddScreen')}>
+          onPress={() => navigation.navigate('AddWarningScreen')}>
           <Icon name="plus" size={24} color="#000" style={{marginRight: 15}} />
         </TouchableOpacity>
       ),
