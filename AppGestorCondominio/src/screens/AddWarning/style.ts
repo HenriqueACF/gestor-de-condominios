@@ -52,4 +52,20 @@ export default styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  photoItem: {
+    width: 65,
+    borderWidth: 1,
+    borderColor: '#8B63E7',
+    borderRadius: 5,
+    paddingBottom: 5,
+    marginLeft: 5,
+    alignItems: 'center',
+  },
+  image: {
+    width: 63,
+    height: 63,
+    marginBottom: 5,
+    borderRadius: 5,
+  },
+  btnDel: {},
 });
