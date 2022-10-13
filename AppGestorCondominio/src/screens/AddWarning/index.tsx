@@ -99,6 +99,7 @@ export function AddWarningScreen({navigation}) {
             })}
           </ScrollView>
         </View>
+        {loading && <Text style={styles.txtLoading}>Enviando foto...</Text>}
         <TouchableOpacity onPress={handleSaveWarn} style={styles.btn}>
           <Text style={styles.txtBtn}>Salvar</Text>
         </TouchableOpacity>

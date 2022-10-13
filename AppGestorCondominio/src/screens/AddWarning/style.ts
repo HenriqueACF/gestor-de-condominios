@@ -68,4 +68,8 @@ export default styles = StyleSheet.create({
     borderRadius: 5,
   },
   btnDel: {},
+  txtLoading: {
+    fontSize: 15,
+    margin: 10,
+  },
 });
