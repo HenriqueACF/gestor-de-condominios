@@ -2,13 +2,12 @@
 obs: O app está todo Estatico, sem conexão coom api
 
 * TODO:
-  * Modal add reservas
   * Tela minhas reservas
   * Tela achados e perdidos
   * Tela perfil
   * Conexão api
 * DOING:
-  * Tela de Reservas
+  *  Tela Add Reservation
 * DONE:
   * Tela login
   * Tela cadastro
@@ -19,5 +18,6 @@ obs: O app está todo Estatico, sem conexão coom api
   * Tela de Boletos
   * Tela de ocorrencias
   * Modal de ocorrencias
+  * Tela de Reservas
 
 
