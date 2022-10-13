@@ -1,10 +1,12 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import styles from './style';
 
-export function ReservationItem({navigation}) {
+export function ReservationItem() {
+  const navigation = useNavigation();
   const handleClick = () => {
-    navigation.navigate('ReservationAdd');
+    navigation.navigate('AddReservation');
   };
 
   return (

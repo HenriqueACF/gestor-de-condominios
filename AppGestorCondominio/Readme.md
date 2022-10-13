@@ -1,11 +1,12 @@
 ## App De Gestão de Condominios
-obs: O app está todo Estatico, sem conexão coom api
+#### OBS: O app está todo Estatico, sem conexão coom api
 
 * TODO:
   * Tela minhas reservas
   * Tela achados e perdidos
   * Tela perfil
   * Conexão api
+  * Componentes dinamicos em todas aplicação
 * DOING:
   *  Tela Add Reservation
 * DONE:
