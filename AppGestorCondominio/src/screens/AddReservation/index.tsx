@@ -1,26 +1,51 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   ActivityIndicator,
-  Alert,
   Image,
   SafeAreaView,
   ScrollView,
   View,
+  Text,
+  Alert,
+  TouchableOpacity,
 } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import api from '../../Service/api';
 import styles from './style';
 
 export function AddReservation({navigation}) {
+  const scroll = useRef();
   const [loading, setLoading] = useState(false);
   const [disabledDates, setDisabledDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [timeList, setTimeList] = useState([]);
   const [selectedTime, setSelectedTime] = useState(null);
 
+  useEffect(() => {
+    getTimes();
+  }, [selectedDate]);
+
   const minDate = new Date();
   const maxDate = new Date();
   maxDate.setMonth(maxDate.getMonth() + 3);
+
+  const getTimes = async () => {
+    if (selectedDate) {
+      const result = await api.getReservationTimes(
+        route.params.data.id,
+        selectedDate,
+      );
+      if (result.error === '') {
+        setSelectedTime(null);
+        setTimeList(result.list);
+        setTimeout(() => {
+          scroll.current.scrollToEnd();
+        }, 500);
+      } else {
+        Alert.alert(result.error);
+      }
+    }
+  };
 
   const getDisabledDates = async () => {
     setDisabledDates([]);
@@ -41,7 +66,45 @@ export function AddReservation({navigation}) {
     }
      */
   };
-  const handleDateChange = () => {};
+  const handleDateChange = date => {
+    let dateE1 = new Date(date);
+    let year = dateE1.getFullYear();
+    let month = dateE1.getMonth() + 1;
+    let day = dateE1.getDate();
+
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+    setSelectedDate(`${year}-${month}-${day}`);
+  };
+
+  const showTextDate = date => {
+    let dateE1 = new Date(date);
+    let year = dateE1.getFullYear();
+    let month = dateE1.getMonth() + 1;
+    let day = dateE1.getDate();
+
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+
+    return `${day}/${month}/${year}`;
+  };
+
+  const handleSave = async () => {
+    if (selectedDate && selectedTime) {
+      const result = await api.setReservation(
+        route.params.data.id,
+        selectedDate,
+        selectedTime,
+      );
+      if (result.error === '') {
+        navigation.navigate('ReservationMyScreen');
+      } else {
+        Alert.alert(result.error);
+      }
+    } else {
+      Alert.alert('Selecione uma Data e Horário.');
+    }
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -55,7 +118,7 @@ export function AddReservation({navigation}) {
   });
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView ref={scroll}>
         <Image
           source={require('../../assets/academia.jpg')}
           resizeMode="cover"
@@ -99,7 +162,33 @@ export function AddReservation({navigation}) {
             />
           </View>
         )}
+        {!loading && selectedDate && (
+          <>
+            <Text style={styles.title}>
+              Horários disponíveis em: {showTextDate(selectedDate)}
+            </Text>
+            <View style={styles.timeList}>
+              {timeList.map((item, index) => (
+                <TouchableOpacity
+                  onPress={() => setSelectedTime(item.id)}
+                  active={selectedTime === item.id}
+                  key={index}
+                  style={styles.btn}>
+                  <Text style={styles.txt} active={selectedTime === item.id}>
+                    {item.title}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </>
+        )}
       </ScrollView>
+      {/*TODO -> ALTERAR PARA !LOADING*/}
+      {loading && (
+        <TouchableOpacity style={styles.btnReserva} onPress={handleSave}>
+          <Text style={styles.txtReserva}>Reservar Local</Text>
+        </TouchableOpacity>
+      )}
     </SafeAreaView>
   );
 }
