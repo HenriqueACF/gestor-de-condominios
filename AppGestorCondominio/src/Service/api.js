@@ -173,4 +173,22 @@ export default {
     );
     return json;
   },
+  getMyReservation: async () => {
+    let token = await AsyncStorage.getItem('token');
+    let property = await AsyncStorage.getItem('property');
+    property = JSON.parse(property);
+    return await request(
+      'get',
+      '/myreservations',
+      {
+        property: property.id,
+      },
+      token,
+    );
+  },
+  removeReservation: async id => {
+    let token = await AsyncStorage.getItem('token');
+    let json = await request('delete', `/myreservations/${id}`, {}, token);
+    return json;
+  },
 };

@@ -2,12 +2,11 @@
 #### OBS: O app está todo Estatico, sem conexão coom api
 
 * TODO:
-  * Tela achados e perdidos
   * Tela perfil
   * Conexão api
   * Componentes dinamicos em todas aplicação
 * DOING:
-  *  Tela minhas reservas
+  *  Tela achados e perdidos
 * DONE:
   * Tela login
   * Tela cadastro
@@ -20,5 +19,6 @@
   * Modal de ocorrencias
   * Tela de Reservas - 13/10/22
   * Tela Add Reservation - 14/10/22
+  * Tela minhas reservas - 14/10/22
 
 

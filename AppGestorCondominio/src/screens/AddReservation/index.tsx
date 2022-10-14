@@ -97,7 +97,7 @@ export function AddReservation({navigation}) {
         selectedTime,
       );
       if (result.error === '') {
-        navigation.navigate('ReservationMyScreen');
+        navigation.navigate('MyReservation');
       } else {
         Alert.alert(result.error);
       }

@@ -28,7 +28,9 @@ export function ReservationScreen({navigation}) {
   return (
     <SafeAreaView style={{padding: 10}}>
       <ScrollView>
-        <TouchableOpacity style={styles.btnMyReservations} onPress={null}>
+        <TouchableOpacity
+          style={styles.btnMyReservations}
+          onPress={() => navigation.navigate('MyReservation')}>
           <Text style={styles.txtBtn}>Minhas Reservas</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Selecione uma Área</Text>

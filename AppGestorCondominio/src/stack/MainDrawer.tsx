@@ -8,6 +8,7 @@ import {WarningScreen} from '../screens/Warning';
 import {AddWarningScreen} from '../screens/AddWarning';
 import {ReservationScreen} from '../screens/Reservation';
 import {AddReservation} from '../screens/AddReservation';
+import {MyReservation} from '../screens/MyReservation';
 const Drawer = createDrawerNavigator();
 
 export default function MainDrawer() {
@@ -30,6 +31,7 @@ export default function MainDrawer() {
       <Drawer.Screen name="AddWarningScreen" component={AddWarningScreen} />
       <Drawer.Screen name="ReservationScreen" component={ReservationScreen} />
       <Drawer.Screen name="AddReservation" component={AddReservation} />
+      <Drawer.Screen name="MyReservation" component={MyReservation} />
     </Drawer.Navigator>
   );
 }
