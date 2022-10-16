@@ -191,4 +191,9 @@ export default {
     let json = await request('delete', `/myreservations/${id}`, {}, token);
     return json;
   },
+    getFoundAndLost:async()=>{
+      let token = await AsyncStorage.getItem('token');
+      let json = await request('get', '/foundandlost', {}, token);
+      return json;
+  }
 };
