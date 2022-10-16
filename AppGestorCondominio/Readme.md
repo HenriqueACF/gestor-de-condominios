@@ -6,7 +6,7 @@
   * Conexão api
   * Componentes dinamicos em todas aplicação
 * DOING:
-  *  Tela achados e perdidos
+  *  Tela achados e perdidos - 16/10/22
 * DONE:
   * Tela login
   * Tela cadastro
