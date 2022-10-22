@@ -7,7 +7,6 @@
   * Componentes dinamicos em todas aplicação
 * DOING:
   *  Tela achados e perdidos
-  * Ajustes Design
 * DONE:
   * Tela login
   * Tela cadastro
