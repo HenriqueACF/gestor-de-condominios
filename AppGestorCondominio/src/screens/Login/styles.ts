@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
   },
   input: {
     color: 'red',
-    backgroundColor: '#ccc',
+    backgroundColor: '#fff',
     fontSize: 15,
     width: '80%',
     borderRadius: 5,

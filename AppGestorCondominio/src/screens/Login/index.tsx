@@ -29,13 +29,13 @@ export function Login({navigation}) {
           alignItems: 'center',
           paddingBottom: 15,
         }}>
+        <Icon name="user" size={30} color="#8B63E7" style={{marginRight: 5}} />
         <TextInput
           placeholder="Digite seu CPF"
           style={styles.input}
           value={cpf}
           onChangeText={t => setCpf(t)}
         />
-        <Icon name="user" size={30} color="#8B63E7" style={{marginLeft: 5}} />
       </View>
       <View
         style={{
@@ -44,6 +44,7 @@ export function Login({navigation}) {
           justifyContent: 'space-around',
           alignItems: 'center',
         }}>
+        <Icon name="lock" size={30} color="#8B63E7" style={{marginRight: 5}} />
         <TextInput
           placeholder="Digite sua Senha"
           style={styles.input}
@@ -51,7 +52,6 @@ export function Login({navigation}) {
           value={password}
           onChangeText={t => setPassword(t)}
         />
-        <Icon name="lock" size={30} color="#8B63E7" style={{marginLeft: 5}} />
       </View>
       <TouchableOpacity
         style={styles.btn}

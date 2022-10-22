@@ -16,6 +16,7 @@ export default styles = StyleSheet.create({
     borderRadius: 5,
     margin: 10,
     backgroundColor: '#FFF',
+    width: '80%',
   },
   btn: {
     padding: 12,
